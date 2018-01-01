@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Wikipedia Viewer App</title>
+
+
+    <!--this is the setup for w3.css-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="style.css">
+    
+
+
+</head>
+<body>
+    <div class='flex-container'>
+        <div >
+            <input id='searchBox' type="text" placeholder="Search wikipedia..." class='w3-btn w3-white w3-border w3-border-blue'>
+            <input type="button" value='search' onClick='searchButton()' class='w3-btn w3-white w3-border w3-border-blue'>
+            <input type="button" value='random article'onclick="location.href='https://en.wikipedia.org/wiki/Special:Random'; " class='w3-btn w3-white w3-border w3-border-blue'>
+        </div> 
+    </div>
+    <div id="main" class='grid'></div>
+    <div id='footer'></div>
+    <script>
+         var searchTerm;
+
+        function searchButton(){
+            searchTerm = document.getElementById('searchBox').value;
+            console.log(searchTerm);
+            sendRequest();
+        }
+        
+        function sendRequest(){                      
+
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET',`https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchTerm}&origin=*&indexpageids` , true);
+        
+            xhr.onload = function(){
+                if(this.status == 200){
+                    var output = JSON.parse(this.responseText)
+                    console.log(output);
+                    /*console.log(output);  */
+                    document.getElementById('main').innerHTML ="";
+                    var element = document.getElementById('main');
+
+                    /*resetting the viewport size one a search of wikipedia has been performed*/
+                    var flex = document.querySelector('.flex-container');
+                    console.log(flex);
+                    flex.style.setProperty('--viewport-size', '20vh');
+                    
+                                
+                    var i = 0;
+                    var c = 0;
+                    for ( j = 0; j < (output[i].length-1); j++) {
+
+                        console.log(output[1][j]);/*this is the title of the arcticle stub*/
+                        var node = document.createElement('div');
+                        node.id= 'section' + c;
+
+                        /*adding the appropriate classes to the cards*/
+                        node.classList.add('w3-card-4');
+                        node.classList.add('detail');
+                        
+                        element.appendChild(node);
+
+
+                        /* this section is creating elements that will be loaded later with the information from the API*/
+                        var sectionHeader = document.createElement("h2");
+                        var sectionBody = document.createElement("p");
+                        var sectionLink = document.createElement("a");
+                        sectionLink.id = `link${c}`;
+                        var linkName = sectionLink.id
+                        sectionLink.classList.add('w3-btn');
+                        sectionLink.classList.add('w3-white');
+                        sectionLink.classList.add('w3-border');
+                        sectionLink.classList.add('w3-border-blue');
+                        console.log(linkName);
+                        sectionLink.setAttribute("href", `${output[3][j]}`);
+                        
+                        /* this section is creating the variables that will load the actual text from the API*/
+                        var headerText = document.createTextNode(`${output[1][j]}`);
+                        var bodyText = document.createTextNode(`${output[2][j]}`);
+                        var linkText = document.createTextNode(`Jump to page`);
+
+                        /*this section actually mates the first and second sections above together*/
+                        sectionHeader.appendChild(headerText);
+                        sectionBody.appendChild(bodyText);
+                        sectionLink.appendChild(linkText);
+                        
+                        
+                        /* this last section is were things actually get drawn on the webpage*/
+                        document.getElementById(`section${c}`).appendChild(sectionHeader);
+                        document.getElementById(`section${c}`).appendChild(sectionBody);
+                        document.getElementById(`section${c}`).appendChild(sectionLink);    
+                        
+                        
+                        
+                        console.log(output[2][j]);/*this is the article stub*/
+                        console.log(output[3][j]);/*this is the link to the article*/
+                        i = i++
+                        c =c+1;
+                        console.log(c)
+                    }
+                     
+                             
+                    } 
+                }
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
