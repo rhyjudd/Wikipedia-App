@@ -11,6 +11,9 @@
     <!--this is the setup for w3.css-->
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="style.css">
+    <!--Link to font awesome CDN-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
+
     
 
 
@@ -19,17 +22,31 @@
     <div class='flex-container'>
         <div >
             <input id='searchBox' type="text" placeholder="Search wikipedia..." class='w3-btn w3-white w3-border w3-border-blue'>
-            <input type="button" value='search' onClick='searchButton()' class='w3-btn w3-white w3-border w3-border-blue'>
+            <button type="submit" class='w3-btn w3-white w3-border w3-border-blue' onclick="searchButton()" autofocus>
+                <i class="fas fa-search"></i>
+            </button>
             <input type="button" value='random article'onclick="location.href='https://en.wikipedia.org/wiki/Special:Random'; " class='w3-btn w3-white w3-border w3-border-blue'>
         </div> 
     </div>
     <div id="main" class='grid'></div>
-    <div id='footer'></div>
+    <div id='footer'>
+        <div>
+            <p>Coded By Rhyan Judd</p>
+        </div>
+        <div id='social'>
+            <div><i class="fab fa-free-code-camp fa-2x"></i></div>
+            <div><i class="fab fa-github fa-3x"></i></div>
+            <div><i class="fab fa-facebook fa-4x"></i></div>
+            <div><i class="fab fa-stack-overflow fa-5x"></i></div>
+
+        </div>
+    </div>
     <script>
          var searchTerm;
 
         function searchButton(){
             searchTerm = document.getElementById('searchBox').value;
+            document.getElementById('footer').style.display = 'flex';
             console.log(searchTerm);
             sendRequest();
         }

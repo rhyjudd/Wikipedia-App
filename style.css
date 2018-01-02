@@ -8,17 +8,22 @@
     flex-flow: row wrap;
     border-top: 0px;
     box-shadow:0 8px 16px 0;
+    background: #dfdfdf;
 }
+
+
 .flex-container{
     height: var(--viewport-size);
     background-size: cover;
     background-position: center;
+    background-image: url('http://res.cloudinary.com/rhyjudd/image/upload/v1514886521/13_dqwwpd.jpg');
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0px 20px;
+
 }
 
 .detail + .detail{
@@ -32,9 +37,31 @@
     width:400px;
     margin-top: 2em;
     margin-bottom: 1em;
-    padding: 2em;  
+    padding: 2em; 
+    background:#ffffff; 
 }
 
 
+#footer{
+    height: 20vh;
+    background-size: cover;
+    background-position: center;
+    background-image: url('http://res.cloudinary.com/rhyjudd/image/upload/v1514886521/13_dqwwpd.jpg');
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    padding: 4em;
+    
+
+
+
+}
+
+#social{
+    display:flex;
+    flex-direction: row;
+}
 
 
