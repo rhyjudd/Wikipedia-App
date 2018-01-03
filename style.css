@@ -16,7 +16,7 @@
     height: var(--viewport-size);
     background-size: cover;
     background-position: center;
-    background-image: url('http://res.cloudinary.com/rhyjudd/image/upload/v1514886521/13_dqwwpd.jpg');
+    background-image: url('http://res.cloudinary.com/rhyjudd/image/upload/v1514885837/12_umiech.jpg');
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -38,7 +38,8 @@
     margin-top: 2em;
     margin-bottom: 1em;
     padding: 2em; 
-    background:#ffffff; 
+    background:#ffffff;
+    border-radius: 7px; 
 }
 
 
@@ -46,7 +47,8 @@
     height: 20vh;
     background-size: cover;
     background-position: center;
-    background-image: url('http://res.cloudinary.com/rhyjudd/image/upload/v1514886521/13_dqwwpd.jpg');
+    background: #7b7a7e;
+    color: #ffffff;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -59,9 +61,6 @@
 
 }
 
-#social{
-    display:flex;
-    flex-direction: row;
-}
+
 
 
